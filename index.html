@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karen Plemons: UX Research Leader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #faf8f6;
+      --bg-accent: #f7f2ee;
+      --text: #1a1210;
+      --text-2: #3d2f2a;
+      --text-3: #6e5a54;
+      --text-4: #857065;
+      --accent: #7c2635;
+      --accent-mid: #a03347;
+      --accent-light: #f5ebe9;
+      --accent-border: #e8cfc9;
+      --border: #e8e0dc;
+      --border-soft: #f3eeeb;
+      --radius: 8px;
+      --radius-lg: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .skip-link {
+      position: absolute; left: -9999px; top: 8px; z-index: 300;
+      background: var(--text); color: #fff; padding: 10px 18px;
+      border-radius: var(--radius); font-size: 14px; font-weight: 600; text-decoration: none;
+    }
+    .skip-link:focus { left: 8px; }
+
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-name { font-weight: 700; font-size: 15px; color: var(--text); text-decoration: none; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--text-3); text-decoration: none; transition: color .15s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: clamp(72px, 10vw, 112px) 0; }
+    section + section, footer { border-top: 1px solid var(--border); }
+    .section-eyebrow {
+      font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+    }
+    h1 { font-size: clamp(2.9rem, 6.2vw, 4.9rem); font-weight: 800; line-height: 1.04; letter-spacing: -0.032em; text-wrap: balance; }
+    h2 { font-size: clamp(1.9rem, 3.2vw, 2.5rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.025em; text-wrap: balance; }
+    h3 { font-size: 1.15rem; font-weight: 600; line-height: 1.4; }
+    p { color: var(--text-2); }
+
+    /* ── HERO ── */
+    #hero { padding: clamp(88px, 11vw, 128px) 0; border-top: none; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(40px, 6vw, 72px); align-items: center; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13.5px; font-weight: 500; color: var(--text-3);
+      margin-bottom: 26px;
+    }
+    .hero-eyebrow-dot { width: 8px; height: 8px; background: var(--accent-mid); border-radius: 50%; }
+    .hero-title { margin-bottom: 26px; }
+    .hero-title em { font-style: normal; color: var(--accent); }
+    .hero-subtitle { font-size: 1.13rem; line-height: 1.65; margin-bottom: 40px; max-width: 54ch; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-block; padding: 13px 26px; border-radius: var(--radius);
+      font-weight: 600; font-size: 14.5px; text-decoration: none; cursor: pointer;
+      border: 1.5px solid transparent; transition: background .15s, color .15s, border-color .15s;
+    }
+    .btn-primary { background: var(--text); color: #fff; border-color: var(--text); }
+    .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+    .btn-outline { border-color: var(--border); color: var(--text-2); background: transparent; }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-photo-wrap { display: flex; align-items: center; justify-content: center; }
+    .hero-photo {
+      width: min(100%, 400px); aspect-ratio: 380 / 460; object-fit: cover; object-position: center top;
+      border-radius: var(--radius-lg); border: 1px solid var(--border);
+      box-shadow: 0 8px 40px rgba(124,38,53,0.12), 0 2px 12px rgba(0,0,0,0.07);
+      display: block;
+    }
+
+    /* ── CREATOR STUDIO ── */
+    #creator { background: var(--bg-soft); }
+    .creator-card {
+      background: white; border-radius: var(--radius-lg);
+      border: 1px solid var(--border); overflow: hidden;
+    }
+    .creator-card-top { padding: clamp(28px, 5vw, 52px) clamp(24px, 5vw, 52px) 40px; }
+    .creator-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--accent); color: white;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .creator-badge-dot {
+      width: 6px; height: 6px; background: #f0b5a8; border-radius: 50%;
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+    .creator-title { font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 18px; text-wrap: balance; }
+    .creator-desc { font-size: 1.05rem; line-height: 1.7; max-width: 68ch; margin-bottom: 36px; }
+    .creator-points { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 36px; }
+    .creator-point { display: flex; gap: 14px; }
+    .creator-point-marker {
+      width: 28px; height: 28px; background: var(--bg-accent);
+      border-radius: 50%; flex-shrink: 0; margin-top: 2px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .creator-point-marker svg { width: 14px; height: 14px; }
+    .creator-point-title { font-weight: 600; font-size: 14.5px; color: var(--text); margin-bottom: 3px; }
+    .creator-point-body { font-size: 13.5px; color: var(--text-3); line-height: 1.55; }
+    .creator-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .link-chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 13px; font-weight: 500; color: var(--accent);
+      border: 1.5px solid var(--accent-border); padding: 7px 16px;
+      border-radius: 100px; text-decoration: none; background: white;
+      transition: background .15s;
+    }
+    .link-chip:hover { background: var(--bg-accent); }
+
+    .creator-screenshots { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); }
+    .creator-screenshot-wrap { overflow: hidden; background: white; border-right: 1px solid var(--border); }
+    .creator-screenshot-wrap:last-child { border-right: none; }
+    .creator-screenshot-wrap img {
+      width: 100%; height: 220px; object-fit: cover; object-position: top;
+      display: block; transition: transform .3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .creator-screenshot-wrap:hover img { transform: scale(1.02); }
+    .screenshot-caption {
+      padding: 12px 16px; font-size: 12.5px; color: var(--text-3);
+      border-top: 1px solid var(--border); background: white;
+    }
+
+    /* ── CASE STUDIES ── */
+    .cs-list { display: flex; flex-direction: column; gap: 14px; }
+    .cs-card { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: #fff; }
+    .cs-header {
+      width: 100%; text-align: left; background: none; border: none;
+      font-family: inherit; padding: 28px 32px; cursor: pointer;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
+      transition: background .15s;
+    }
+    .cs-header:hover { background: var(--bg-soft); }
+    .cs-header-left { flex: 1; }
+    .cs-chapter {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+    }
+    .cs-title { font-size: 1.15rem; font-weight: 600; color: var(--text); margin-bottom: 10px; line-height: 1.4; }
+    .cs-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .cs-tag {
+      font-size: 12px; color: var(--text-3); background: var(--bg-soft);
+      border: 1px solid var(--border); padding: 3px 10px; border-radius: 100px;
+    }
+    .cs-toggle {
+      width: 30px; height: 30px; border: 1.5px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      margin-top: 2px; transition: transform .2s, border-color .2s, color .2s;
+      color: var(--text-3); font-size: 17px; font-weight: 400;
+    }
+    .cs-header[aria-expanded="true"] .cs-toggle { transform: rotate(45deg); border-color: var(--accent); color: var(--accent); }
+
+    .cs-body { display: none; border-top: 1px solid var(--border); }
+    .cs-card.open .cs-body { display: block; }
+    .cs-body-inner { padding: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+
+    .cs-section { margin-bottom: 28px; }
+    .cs-section:last-child { margin-bottom: 0; }
+    .cs-section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-4); margin-bottom: 10px;
+    }
+    .cs-section p { font-size: 14.5px; line-height: 1.65; }
+    .cs-bullets { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .cs-bullets li {
+      font-size: 14px; color: var(--text-2); line-height: 1.6;
+      padding-left: 18px; position: relative;
+    }
+    .cs-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 12px; top: 3px; }
+
+    .cs-results { display: flex; flex-direction: column; gap: 12px; }
+    .cs-result {
+      background: var(--accent-light); border: 1px solid var(--accent-border);
+      border-radius: var(--radius); padding: 16px 18px;
+    }
+    .cs-result strong { font-size: 14px; font-weight: 600; color: var(--text); display: block; margin-bottom: 4px; }
+    .cs-result span { font-size: 13px; color: var(--text-3); line-height: 1.5; }
+
+    .cs-visual { display: flex; align-items: center; justify-content: center; }
+    .cs-viz { width: 100%; border-radius: var(--radius); overflow: hidden; }
+
+    /* ── QUOTES ── */
+    #quotes { background: var(--bg-accent); }
+    .quotes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .quote-card { background: white; border-radius: var(--radius-lg); padding: 28px; border: 1px solid var(--accent-border); }
+    .quote-mark { font-size: 48px; line-height: 1; color: var(--accent-border); font-family: Georgia, serif; margin-bottom: 12px; }
+    .quote-text { font-size: 14.5px; line-height: 1.65; color: var(--text-2); font-style: italic; margin-bottom: 16px; }
+    .quote-source { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); }
+
+    /* ── EARLIER WORK ── */
+    .earlier-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(32px, 5vw, 64px); }
+    .earlier-item { padding: 22px 0; border-bottom: 1px solid var(--border); }
+    .earlier-title { font-weight: 600; font-size: 15px; color: var(--text); margin-bottom: 6px; }
+    .earlier-body { font-size: 13.5px; color: var(--text-3); line-height: 1.6; }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(40px, 6vw, 72px); align-items: start; }
+    .about-text h2 { margin-bottom: 22px; }
+    .about-text p { font-size: 15.5px; margin-bottom: 16px; line-height: 1.7; max-width: 62ch; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .strengths { display: flex; flex-direction: column; }
+    .strength { padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .strength:first-child { padding-top: 0; }
+    .strength:last-child { border-bottom: none; padding-bottom: 0; }
+    .strength-title { font-weight: 600; font-size: 14.5px; color: var(--text); margin-bottom: 5px; }
+    .strength-desc { font-size: 13.5px; color: var(--text-3); line-height: 1.6; }
+
+    /* ── RESUME ── */
+    #resume { background: var(--bg-soft); }
+    .resume-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(40px, 6vw, 72px); }
+    .resume-section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-4); margin-bottom: 28px;
+      padding-bottom: 10px; border-bottom: 1px solid var(--border);
+    }
+    .timeline { display: flex; flex-direction: column; }
+    .tl-item { display: grid; grid-template-columns: 90px 1fr; gap: 20px; padding-bottom: 28px; position: relative; }
+    .tl-item:not(:last-child)::after {
+      content: ''; position: absolute; left: 90px; top: 10px; bottom: 0;
+      width: 1px; background: var(--border);
+    }
+    .tl-years { font-size: 12px; font-weight: 600; color: var(--text-4); padding-top: 3px; text-align: right; padding-right: 20px; }
+    .tl-content { padding-left: 20px; position: relative; }
+    .tl-content::before {
+      content: ''; position: absolute; left: -5px; top: 8px;
+      width: 10px; height: 10px; background: var(--accent); border-radius: 50%;
+      border: 2px solid white; box-shadow: 0 0 0 1px var(--accent-border);
+    }
+    .tl-role { font-weight: 600; font-size: 14.5px; color: var(--text); margin-bottom: 4px; }
+    .tl-company { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 5px; }
+    .tl-focus { font-size: 13px; color: var(--text-3); line-height: 1.55; }
+    .tl-highlight { font-size: 12px; color: var(--text-4); margin-top: 4px; font-style: italic; }
+
+    .skill-section { margin-bottom: 32px; }
+    .skill-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-4); margin-bottom: 12px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-tag {
+      font-size: 12px; background: white; border: 1px solid var(--border);
+      border-radius: 100px; padding: 4px 12px; color: var(--text-2);
+    }
+
+    /* ── FOOTER ── */
+    footer { padding: 72px 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; }
+    .footer-name { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .footer-title { font-size: 14px; color: var(--text-3); }
+    .footer-right { text-align: right; }
+    .footer-email { font-size: 16px; font-weight: 600; color: var(--accent); text-decoration: none; }
+    .footer-email:hover { text-decoration: underline; }
+    .footer-meta { font-size: 13px; color: var(--text-3); margin-top: 5px; }
+    .footer-links { display: flex; gap: 16px; margin-top: 12px; justify-content: flex-end; }
+    .footer-links a { font-size: 13px; color: var(--text-3); text-decoration: none; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── MOTION PREFERENCES ── */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .hero-grid, .about-grid, .resume-grid, .creator-points, .cs-body-inner, .earlier-list { grid-template-columns: 1fr; }
+      .hero-grid { gap: 48px; }
+      .hero-photo-wrap { order: -1; justify-content: flex-start; }
+      .hero-photo { width: min(100%, 320px); }
+      .quotes-grid { grid-template-columns: 1fr; }
+      .creator-screenshots { grid-template-columns: 1fr; }
+      .creator-screenshot-wrap { border-right: none; border-bottom: 1px solid var(--border); }
+      .creator-screenshot-wrap:last-child { border-bottom: none; }
+      .nav-links { display: none; }
+      .footer-inner { flex-direction: column; }
+      .footer-right { text-align: left; }
+      .footer-links { justify-content: flex-start; }
+      .cs-header { padding: 22px 20px; }
+      .cs-body-inner { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#hero" class="skip-link">Skip to content</a>
+
+<!-- NAV -->
+<nav aria-label="Main">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-name">Karen Plemons</a>
+    <ul class="nav-links">
+      <li><a href="#creator">Creator Studio</a></li>
+      <li><a href="#work">Case Studies</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <p class="hero-eyebrow">
+          <span class="hero-eyebrow-dot"></span>
+          UX Research Senior Manager · Seattle, WA
+        </p>
+        <h1 class="hero-title">I turn ambiguous problems into <em>product strategy.</em></h1>
+        <p class="hero-subtitle">15+ years of research leadership across a major social platform, a language learning startup, museums, and nonprofits. I lead research that shapes what gets built, not just validates what's already decided.</p>
+        <div class="hero-actions">
+          <a href="#work" class="btn btn-primary">View Case Studies</a>
+          <a href="#resume" class="btn btn-outline">Full Resume</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <img src="portfolio-hero.jpg" alt="Karen Plemons" class="hero-photo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREATOR STUDIO -->
+<section id="creator">
+  <div class="container">
+    <p class="section-eyebrow">Just Shipped · June 2026</p>
+    <div class="creator-card">
+      <div class="creator-card-top">
+        <div class="creator-badge">
+          <span class="creator-badge-dot"></span>
+          Live Now
+        </div>
+        <h2 class="creator-title">Facebook Creator Studio: AI Companion App</h2>
+        <p class="creator-desc">
+          I oversaw the research strategy for the reimagined Creator Studio: a standalone AI-powered app helping Facebook Creators grow their audiences. I directed the team's focus toward AI as the primary opportunity area. The result is an app where AI is foundational, not bolted on. I worked closely with senior cross-functional leadership throughout to shape the research approach informing the app's direction.
+        </p>
+        <div class="creator-points">
+          <div class="creator-point">
+            <div class="creator-point-marker">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--accent)" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div>
+              <h3 class="creator-point-title">AI as foundation, not feature</h3>
+              <div class="creator-point-body">Directed team to focus on AI as the core opportunity. The assistant knows each Creator's voice, audience, and goals from day one, built in from the ground up.</div>
+            </div>
+          </div>
+          <div class="creator-point">
+            <div class="creator-point-marker">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--accent)" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M20.188 10.934c.2.646.312 1.329.312 2.066 0 .736-.112 1.42-.312 2.066M3.812 10.934C3.612 11.58 3.5 12.264 3.5 13c0 .736.112 1.42.312 2.066M7.938 5.146A9 9 0 0112 4a9 9 0 014.062 1.146M7.938 20.854A9 9 0 0112 22a9 9 0 004.062-1.146"/></svg>
+            </div>
+            <div>
+              <h3 class="creator-point-title">Senior stakeholder buy-in</h3>
+              <div class="creator-point-body">Made the case to senior leadership for building a standalone app, presenting research evidence and strategic framing that secured buy-in for the new app's development.</div>
+            </div>
+          </div>
+          <div class="creator-point">
+            <div class="creator-point-marker">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--accent)" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <h3 class="creator-point-title">Research resource direction</h3>
+              <div class="creator-point-body">Oversaw team resource allocation and research prioritization for a zero-to-one product launch in a new standalone app context.</div>
+            </div>
+          </div>
+          <div class="creator-point">
+            <div class="creator-point-marker">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--accent)" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div>
+              <h3 class="creator-point-title">Personalized Creator growth</h3>
+              <div class="creator-point-body">Research informed an AI assistant delivering personalized strategy recommendations: engagement, reach, and earnings, tailored to each Creator's goals.</div>
+            </div>
+          </div>
+        </div>
+        <div class="creator-links">
+          <a href="https://creators.facebook.com/blog/introducing-new-facebook-creator-studio" target="_blank" rel="noopener" class="link-chip">↗ Official Announcement</a>
+          <a href="https://techcrunch.com/2026/06/24/facebook-rolls-out-an-ai-companion-app-for-creators/" target="_blank" rel="noopener" class="link-chip">↗ TechCrunch Coverage</a>
+        </div>
+      </div>
+      <div class="creator-screenshots">
+        <div class="creator-screenshot-wrap">
+          <img src="https://techcrunch.com/wp-content/uploads/2026/06/Screenshot-2026-06-24-at-11.15.33-AM.png" alt="Creator Studio AI assistant interface showing personalized recommendations" loading="lazy">
+          <div class="screenshot-caption">AI Creator assistant: personalized daily priorities and performance insights</div>
+        </div>
+        <div class="creator-screenshot-wrap">
+          <img src="https://techcrunch.com/wp-content/uploads/2026/06/Screenshot-2026-06-24-at-11.15.46-AM.png" alt="Creator Studio app showing content engagement dashboard" loading="lazy">
+          <div class="screenshot-caption">AI-powered comment tool: surfaces top comments and drafts replies in Creator's voice</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="work">
+  <div class="container">
+    <p class="section-eyebrow">Case Studies</p>
+    <h2 style="margin-bottom: 40px;">Four defining projects.</h2>
+
+    <div class="cs-list">
+
+      <!-- Case Study I -->
+      <div class="cs-card">
+        <button class="cs-header" aria-expanded="false" onclick="toggleCS(this)">
+          <span class="cs-header-left">
+            <span class="cs-chapter" style="display:block">Chapter I · Community Strategy</span>
+            <span class="cs-title" style="display:block">Defined "Great Community" as a Platform-Level Differentiator</span>
+            <span class="cs-tags">
+              <span class="cs-tag">Zero-to-one strategy</span>
+              <span class="cs-tag">6-week sprint</span>
+              <span class="cs-tag">Pillar-level adoption</span>
+            </span>
+          </span>
+          <span class="cs-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="cs-body">
+          <div class="cs-body-inner">
+            <div>
+              <div class="cs-section">
+                <h3 class="cs-section-label">The Problem</h3>
+                <p>A Creator-focused product area needed to make community a strategic differentiator, but "community" meant ten different things across teams with no research-rooted definition to anchor from.</p>
+              </div>
+              <div class="cs-section">
+                <h3 class="cs-section-label">What I Did</h3>
+                <ul class="cs-bullets">
+                  <li>Co-led a 6-week research-to-strategy sprint with Design as a full co-owner, not research supporting design, but both co-leading</li>
+                  <li>Authored a Hierarchy of Needs framework mapping fan and Creator needs to specific product surfaces</li>
+                  <li>Defined community from both fan and Creator perspectives, a duality most prior work had missed</li>
+                  <li>Co-creation mapping: participants physically mapped the product's features and surfaces, making the problem space tangible for XFN</li>
+                  <li>Stood up a living shared team hub with daily recaps and observer access, continuously pre-socializing the strategy with stakeholders throughout</li>
+                </ul>
+              </div>
+            </div>
+            <div class="cs-visual">
+              <div class="cs-viz">
+                <svg viewBox="0 0 340 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;" role="img" aria-label="Hierarchy of Needs framework diagram: four tiers from Creator and Fan needs at the foundation up to Strategy">
+                  <rect width="340" height="320" fill="#f5ebe9" rx="12"/>
+                  <text x="170" y="28" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#a03347" letter-spacing="1.5">HIERARCHY OF NEEDS FRAMEWORK</text>
+                  <rect x="110" y="42" width="120" height="48" rx="8" fill="#5c1a25"/>
+                  <text x="170" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="600" fill="#e8cfc9">TIER 4</text>
+                  <text x="170" y="79" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="white">Strategy</text>
+                  <line x1="170" y1="90" x2="170" y2="100" stroke="#b85c6e" stroke-width="1.5" stroke-dasharray="3 2"/>
+                  <rect x="70" y="100" width="200" height="48" rx="8" fill="#7c2635"/>
+                  <text x="170" y="120" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="600" fill="#e8cfc9">TIER 3</text>
+                  <text x="170" y="137" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="white">Community Infrastructure</text>
+                  <line x1="170" y1="148" x2="170" y2="158" stroke="#b85c6e" stroke-width="1.5" stroke-dasharray="3 2"/>
+                  <rect x="32" y="158" width="276" height="48" rx="8" fill="#a03347"/>
+                  <text x="170" y="178" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="600" fill="#f5ebe9">TIER 2</text>
+                  <text x="170" y="195" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="white">Engagement Surfaces</text>
+                  <line x1="170" y1="206" x2="170" y2="216" stroke="#b85c6e" stroke-width="1.5" stroke-dasharray="3 2"/>
+                  <rect x="10" y="216" width="320" height="52" rx="8" fill="#b85c6e"/>
+                  <text x="170" y="236" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="600" fill="#f5ebe9">TIER 1 · FOUNDATION</text>
+                  <text x="170" y="254" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="white">Creator + Fan Needs</text>
+                  <rect x="60" y="284" width="220" height="24" rx="12" fill="white"/>
+                  <text x="170" y="300" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#7c2635">Adopted as cross-functional reference</text>
+                </svg>
+                <div class="cs-section" style="margin-top:20px">
+                  <h3 class="cs-section-label">Results</h3>
+                  <div class="cs-results">
+                    <div class="cs-result">
+                      <strong>Strategy adopted at pillar level</strong>
+                      <span>Pre-socialized throughout; landed without resistance</span>
+                    </div>
+                    <div class="cs-result">
+                      <strong>Hierarchy of Needs as shared XFN reference</strong>
+                      <span>Used by every team in community conversations going forward</span>
+                    </div>
+                    <div class="cs-result">
+                      <strong>Process published as org template</strong>
+                      <span>"Starting sprints with UXR should be the norm"</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study II -->
+      <div class="cs-card">
+        <button class="cs-header" aria-expanded="false" onclick="toggleCS(this)">
+          <span class="cs-header-left">
+            <span class="cs-chapter" style="display:block">Chapter II · Cross-Org Segmentation</span>
+            <span class="cs-title" style="display:block">Built Cross-Org Strategic Clarity for an Ambiguous Segmentation Problem</span>
+            <span class="cs-tags">
+              <span class="cs-tag">Latent Class Analysis</span>
+              <span class="cs-tag">32K+ responses</span>
+              <span class="cs-tag">22 countries</span>
+              <span class="cs-tag">Influence without authority</span>
+            </span>
+          </span>
+          <span class="cs-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="cs-body">
+          <div class="cs-body-inner">
+            <div>
+              <div class="cs-section">
+                <h3 class="cs-section-label">The Problem</h3>
+                <p>Two organizations on a shared product surface had inconsistent definitions of overlapping user populations. Roadmap implications conflicted; leadership couldn't make structural product decisions without a shared model.</p>
+              </div>
+              <div class="cs-section">
+                <h3 class="cs-section-label">What I Did</h3>
+                <ul class="cs-bullets">
+                  <li>Co-built a Jobs-to-be-Done framework with a counterpart researcher: true cross-org co-creation, not one team handing off to another</li>
+                  <li>Designed and ran a large-scale in-platform survey: 32K+ responses across 22 countries, three distinct user-account types</li>
+                  <li>Applied Latent Class Analysis to surface hidden motivational subgroups beneath self-reported identity</li>
+                  <li>Sequenced multi-method validation: existing qual → at-scale survey → follow-on intersection qual</li>
+                  <li>Mobilized engineering to unblock technical integration points; coordinated three parallel research workstreams simultaneously</li>
+                  <li>Held the line on rigor; pushed back on premature use of draft frameworks until validation was complete</li>
+                </ul>
+              </div>
+            </div>
+            <div class="cs-visual">
+              <div class="cs-viz">
+                <svg viewBox="0 0 340 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;" role="img" aria-label="Four motivational groups from Latent Class Analysis: Motivation Driven, Connection Driven, Business Driven, and Multi-Purpose">
+                  <rect width="340" height="320" fill="#f5ebe9" rx="12"/>
+                  <text x="170" y="26" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#a03347" letter-spacing="1.5">4 MOTIVATIONAL GROUPS</text>
+                  <text x="170" y="42" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#6e5a54">Latent Class Analysis · 22 Countries · 32K+ Responses</text>
+                  <rect x="12" y="54" width="152" height="118" rx="10" fill="#5c1a25"/>
+                  <text x="24" y="86" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="white">Motivation Driven</text>
+                  <text x="24" y="112" font-family="Inter,sans-serif" font-size="10" fill="#e8cfc9">Growth and achievement</text>
+                  <text x="24" y="127" font-family="Inter,sans-serif" font-size="10" fill="#e8cfc9">as the primary goal</text>
+                  <text x="24" y="158" font-family="Inter,sans-serif" font-size="9" fill="#d4909a" font-weight="700">LARGEST GROUP</text>
+                  <rect x="176" y="54" width="152" height="118" rx="10" fill="#7c2635"/>
+                  <text x="188" y="86" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="white">Connection Driven</text>
+                  <text x="188" y="112" font-family="Inter,sans-serif" font-size="10" fill="#e8cfc9">Community and audience</text>
+                  <text x="188" y="127" font-family="Inter,sans-serif" font-size="10" fill="#e8cfc9">relationships come first</text>
+                  <rect x="12" y="184" width="152" height="118" rx="10" fill="#e8cfc9"/>
+                  <text x="24" y="216" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#5c1a25">Business Driven</text>
+                  <text x="24" y="242" font-family="Inter,sans-serif" font-size="10" fill="#5c4a44">Monetization and brand</text>
+                  <text x="24" y="257" font-family="Inter,sans-serif" font-size="10" fill="#5c4a44">building as the focus</text>
+                  <rect x="176" y="184" width="152" height="118" rx="10" fill="#fff" stroke="#e8cfc9" stroke-width="1.5"/>
+                  <text x="188" y="216" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#5c1a25">Multi-Purpose</text>
+                  <text x="188" y="242" font-family="Inter,sans-serif" font-size="10" fill="#5c4a44">Overlapping motivations</text>
+                  <text x="188" y="257" font-family="Inter,sans-serif" font-size="10" fill="#5c4a44">across all categories</text>
+                  <text x="170" y="314" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#6e5a54">None mapped 1:1 to self-reported Creator identity</text>
+                </svg>
+                <div class="cs-section" style="margin-top:20px">
+                  <h3 class="cs-section-label">Results</h3>
+                  <div class="cs-results">
+                    <div class="cs-result">
+                      <strong>Framework cited in executive decision</strong>
+                      <span>Directly referenced in reasoning for a major product structure call</span>
+                    </div>
+                    <div class="cs-result">
+                      <strong>Proved binary classification was wrong</strong>
+                      <span>Some populations mis-classified by 10–25 percentage points</span>
+                    </div>
+                    <div class="cs-result">
+                      <strong>Recommendation adopted</strong>
+                      <span>Shift to probabilistic classification; unified experience with modular sub-experiences</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study III -->
+      <div class="cs-card">
+        <button class="cs-header" aria-expanded="false" onclick="toggleCS(this)">
+          <span class="cs-header-left">
+            <span class="cs-chapter" style="display:block">Chapter III · AI Transformation</span>
+            <span class="cs-title" style="display:block">Built the UXR AI Curriculum and Knowledge Infrastructure for 130+ Researchers</span>
+            <span class="cs-tags">
+              <span class="cs-tag">130+ researchers</span>
+              <span class="cs-tag">Curriculum design</span>
+              <span class="cs-tag">Hands-on workshop</span>
+              <span class="cs-tag">1:1 mentorship</span>
+            </span>
+          </span>
+          <span class="cs-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="cs-body">
+          <div class="cs-body-inner">
+            <div>
+              <div class="cs-section">
+                <h3 class="cs-section-label">The Problem</h3>
+                <p>The research practice needed a coherent path from ad-hoc AI experimentation to real adoption, with the skills, infrastructure, and ongoing resources to make it stick across 130+ researchers.</p>
+              </div>
+              <div class="cs-section">
+                <h3 class="cs-section-label">What I Did</h3>
+                <ul class="cs-bullets">
+                  <li>Co-developed the UXR curriculum track for the org's AI Transformation Week (part of a broader 7,000-person company event), specifically serving 130+ researchers</li>
+                  <li>Organized and ran a hands-on AI workshop giving researchers direct practice with tools and workflows, not just conceptual exposure</li>
+                  <li>Provided 1:1 mentorship to researchers on applying AI within their own research practice</li>
+                  <li>Built the curriculum site to house all training materials, making them accessible and reusable beyond the event itself</li>
+                  <li>Followed up by building a dedicated resources and trainings site for continued learning and support after AI Week ended</li>
+                </ul>
+              </div>
+            </div>
+            <div class="cs-visual">
+              <div class="cs-viz">
+                <svg viewBox="0 0 340 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;" role="img" aria-label="UXR AI Transformation track: 130+ researchers in the UXR track within a 7,000-person company event, with five deliverables">
+                  <rect width="340" height="320" fill="#f5ebe9" rx="12"/>
+                  <text x="170" y="26" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#a03347" letter-spacing="1.5">UXR AI TRANSFORMATION TRACK</text>
+                  <rect x="12" y="36" width="148" height="76" rx="10" fill="#5c1a25"/>
+                  <text x="86" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-size="32" font-weight="700" fill="white">130+</text>
+                  <text x="86" y="89" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#e8cfc9" font-weight="600">RESEARCHERS IN UXR TRACK</text>
+                  <rect x="170" y="36" width="158" height="76" rx="10" fill="#7c2635"/>
+                  <text x="249" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="26" font-weight="700" fill="white">7,000+</text>
+                  <text x="249" y="84" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#f5ebe9" font-weight="600">COMPANY-WIDE EVENT</text>
+                  <text x="249" y="98" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" fill="#e8cfc9">(UXR track was part of this)</text>
+                  <text x="20" y="136" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#6e5a54" letter-spacing="1">WHAT WAS DELIVERED</text>
+                  <line x1="20" y1="141" x2="320" y2="141" stroke="#e8cfc9" stroke-width="1"/>
+                  <rect x="12" y="149" width="14" height="14" rx="3" fill="#a03347"/>
+                  <text x="19" y="160" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="white" font-weight="700">1</text>
+                  <text x="34" y="160" font-family="Inter,sans-serif" font-size="10.5" fill="#3d2f2a">Co-developed UXR curriculum for AI Week</text>
+                  <rect x="12" y="169" width="14" height="14" rx="3" fill="#a03347"/>
+                  <text x="19" y="180" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="white" font-weight="700">2</text>
+                  <text x="34" y="180" font-family="Inter,sans-serif" font-size="10.5" fill="#3d2f2a">Organized hands-on AI workshop</text>
+                  <rect x="12" y="189" width="14" height="14" rx="3" fill="#a03347"/>
+                  <text x="19" y="200" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="white" font-weight="700">3</text>
+                  <text x="34" y="200" font-family="Inter,sans-serif" font-size="10.5" fill="#3d2f2a">Provided 1:1 mentorship to researchers</text>
+                  <rect x="12" y="209" width="14" height="14" rx="3" fill="#a03347"/>
+                  <text x="19" y="220" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="white" font-weight="700">4</text>
+                  <text x="34" y="220" font-family="Inter,sans-serif" font-size="10.5" fill="#3d2f2a">Built curriculum site to house all materials</text>
+                  <rect x="12" y="229" width="14" height="14" rx="3" fill="#a03347"/>
+                  <text x="19" y="240" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="white" font-weight="700">5</text>
+                  <text x="34" y="240" font-family="Inter,sans-serif" font-size="10.5" fill="#3d2f2a">Built follow-up resources site for continued learning</text>
+                  <rect x="12" y="264" width="316" height="44" rx="8" fill="white" stroke="#e8cfc9" stroke-width="1.5"/>
+                  <text x="170" y="282" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#7c2635">Reference team for AI-powered research</text>
+                  <text x="170" y="298" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#6e5a54">Sustained learning infrastructure beyond the event</text>
+                </svg>
+                <div class="cs-section" style="margin-top:20px">
+                  <h3 class="cs-section-label">Results</h3>
+                  <div class="cs-results">
+                    <div class="cs-result">
+                      <strong>130+ researchers equipped with AI skills</strong>
+                      <span>Through curriculum, workshop, and 1:1 mentorship, not just a one-day event</span>
+                    </div>
+                    <div class="cs-result">
+                      <strong>Sustained learning infrastructure</strong>
+                      <span>Curriculum site and resources site gave researchers ongoing access well beyond AI Week</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study IV -->
+      <div class="cs-card">
+        <button class="cs-header" aria-expanded="false" onclick="toggleCS(this)">
+          <span class="cs-header-left">
+            <span class="cs-chapter" style="display:block">Chapter IV · Creative Storytelling</span>
+            <span class="cs-title" style="display:block">Used Creative Storytelling to Win Multi-App Investment in Social Connections + GenAI</span>
+            <span class="cs-tags">
+              <span class="cs-tag">Board game method</span>
+              <span class="cs-tag">3 countries · 5 cities</span>
+              <span class="cs-tag">108 participants</span>
+              <span class="cs-tag">43 live observers</span>
+            </span>
+          </span>
+          <span class="cs-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="cs-body">
+          <div class="cs-body-inner">
+            <div>
+              <div class="cs-section">
+                <h3 class="cs-section-label">The Problem</h3>
+                <p>Social messaging was a multi-app problem but leadership hadn't internalized it viscerally enough to invest. Abstract data wasn't landing; we needed something people could feel.</p>
+              </div>
+              <div class="cs-section">
+                <h3 class="cs-section-label">What I Did</h3>
+                <ul class="cs-bullets">
+                  <li>Designed and pitched a custom board game that made the multi-app argument concrete and unignorable for XFN leadership, explicitly called out in formal feedback as a creative-method strength</li>
+                  <li>Co-led international field study: 3 countries, 5 cities, 108 participants, 51 sessions (1:1, dyad, small group, 20+ street intercepts)</li>
+                  <li>Recruited 43 cross-org researchers and XFN partners to attend live sessions in-person, building shared understanding across organizations</li>
+                  <li>Used findings to shape the GenAI strategy; ensured research was represented in concept testing and drove ongoing feedback loops</li>
+                  <li>Drove cross-org GenAI research operations for alignment and research-informed strategic narratives</li>
+                </ul>
+              </div>
+            </div>
+            <div class="cs-visual">
+              <div class="cs-viz">
+                <svg viewBox="0 0 340 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;" role="img" aria-label="International fieldwork: 108 participants, 51 sessions, 43 live observers across Denver, Chicago, Lucknow, Kolkata, and Manila">
+                  <rect width="340" height="320" fill="#f5ebe9" rx="12"/>
+                  <text x="170" y="26" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#a03347" letter-spacing="1.5">INTERNATIONAL FIELDWORK</text>
+                  <rect x="12" y="36" width="96" height="54" rx="8" fill="#5c1a25"/>
+                  <text x="60" y="63" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="700" fill="white">108</text>
+                  <text x="60" y="79" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#e8cfc9" font-weight="600">PARTICIPANTS</text>
+                  <rect x="122" y="36" width="96" height="54" rx="8" fill="#7c2635"/>
+                  <text x="170" y="63" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="700" fill="white">51</text>
+                  <text x="170" y="79" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#e8cfc9" font-weight="600">SESSIONS</text>
+                  <rect x="232" y="36" width="96" height="54" rx="8" fill="#a03347"/>
+                  <text x="280" y="63" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="700" fill="white">43</text>
+                  <text x="280" y="79" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#f5ebe9" font-weight="600">LIVE OBSERVERS</text>
+                  <text x="20" y="114" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#6e5a54" letter-spacing="1">UNITED STATES</text>
+                  <rect x="12" y="120" width="148" height="42" rx="8" fill="white" stroke="#e8cfc9" stroke-width="1.5"/>
+                  <text x="26" y="137" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#3d2f2a">Denver</text>
+                  <text x="26" y="152" font-family="Inter,sans-serif" font-size="10" fill="#6e5a54">Colorado</text>
+                  <rect x="168" y="120" width="160" height="42" rx="8" fill="white" stroke="#e8cfc9" stroke-width="1.5"/>
+                  <text x="182" y="137" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#3d2f2a">Chicago</text>
+                  <text x="182" y="152" font-family="Inter,sans-serif" font-size="10" fill="#6e5a54">Illinois</text>
+                  <text x="20" y="184" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#6e5a54" letter-spacing="1">INDIA</text>
+                  <rect x="12" y="190" width="148" height="42" rx="8" fill="white" stroke="#e8cfc9" stroke-width="1.5"/>
+                  <text x="26" y="207" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#3d2f2a">Lucknow</text>
+                  <text x="26" y="222" font-family="Inter,sans-serif" font-size="10" fill="#6e5a54">Uttar Pradesh</text>
+                  <rect x="168" y="190" width="160" height="42" rx="8" fill="white" stroke="#e8cfc9" stroke-width="1.5"/>
+                  <text x="182" y="207" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#3d2f2a">Kolkata</text>
+                  <text x="182" y="222" font-family="Inter,sans-serif" font-size="10" fill="#6e5a54">West Bengal</text>
+                  <text x="20" y="254" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#6e5a54" letter-spacing="1">PHILIPPINES</text>
+                  <rect x="12" y="260" width="148" height="42" rx="8" fill="white" stroke="#e8cfc9" stroke-width="1.5"/>
+                  <text x="26" y="277" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#3d2f2a">Manila</text>
+                  <text x="26" y="292" font-family="Inter,sans-serif" font-size="10" fill="#6e5a54">Metro Manila</text>
+                  <rect x="168" y="260" width="160" height="42" rx="8" fill="#faf5f3" stroke="#e8cfc9" stroke-width="1.5"/>
+                  <text x="178" y="277" font-family="Inter,sans-serif" font-size="10" fill="#7c2635" font-weight="600">1:1 · Dyad · Small group</text>
+                  <text x="178" y="292" font-family="Inter,sans-serif" font-size="10" fill="#5c4a44">+ 20 street intercepts</text>
+                </svg>
+                <div class="cs-section" style="margin-top:20px">
+                  <h3 class="cs-section-label">Results</h3>
+                  <div class="cs-results">
+                    <div class="cs-result">
+                      <strong>Informed a major cross-app integration</strong>
+                      <span>And the platform rebrand</span>
+                    </div>
+                    <div class="cs-result">
+                      <strong>Multiple feature launches shaped</strong>
+                      <span>Social connection surfaces, presence indicators, home-feed optimizations, GenAI social features</span>
+                    </div>
+                    <div class="cs-result">
+                      <strong>Board-game approach recognized</strong>
+                      <span>Called out by manager as a top creative-method strength in formal year-end review</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUOTES -->
+<section id="quotes">
+  <div class="container">
+    <p class="section-eyebrow">What People Say</p>
+    <h2 style="margin-bottom: 40px;">In their own words.</h2>
+    <div class="quotes-grid">
+      <figure class="quote-card">
+        <div class="quote-mark" aria-hidden="true">"</div>
+        <blockquote class="quote-text">Strategically minded with a strong POV on product experience direction backed by research... helping the team to balance decision-making by ensuring the voice of the customer.</blockquote>
+        <figcaption class="quote-source">Cross-functional partner · Product</figcaption>
+      </figure>
+      <figure class="quote-card">
+        <div class="quote-mark" aria-hidden="true">"</div>
+        <blockquote class="quote-text">Karen and her team are always complementary collaborators... clear and transparent communicator... really appreciate her transparency and direct communication style.</blockquote>
+        <figcaption class="quote-source">Cross-functional partner · Product Marketing</figcaption>
+      </figure>
+      <figure class="quote-card">
+        <div class="quote-mark" aria-hidden="true">"</div>
+        <blockquote class="quote-text">Earned a "greatly exceeds" rating... led research and had significant impact across the org... from driving new features to reducing toxicity and driving industry good behavior standards.</blockquote>
+        <figcaption class="quote-source">Former manager · earlier career</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- EARLIER WORK -->
+<section id="earlier">
+  <div class="container">
+    <p class="section-eyebrow">More Examples</p>
+    <h2 style="margin-bottom: 40px;">A consistent pattern of impact.</h2>
+    <div class="earlier-list">
+      <div class="earlier-item">
+        <h3 class="earlier-title">Creator Analytics Modernization</h3>
+        <div class="earlier-body">3-researcher program, 11-week 7-round RITE testing, pre/post usability and competitive benchmarking. Contributed to an increase in daily active users at ship and a reusable framework for future Creator analytics integrations.</div>
+      </div>
+      <div class="earlier-item">
+        <h3 class="earlier-title">Comments Experience Research</h3>
+        <div class="earlier-body">Model evaluations and design research that drove a significant reduction in negative sentiment indicators at launch of a modernized comments experience.</div>
+      </div>
+      <div class="earlier-item">
+        <h3 class="earlier-title">Notifications Research</h3>
+        <div class="earlier-body">Achieved increased satisfaction with notifications via insights on a new ML model and notifications sentiment survey. In-flight results showed the ML launch group reported significantly more positive notification perceptions.</div>
+      </div>
+      <div class="earlier-item">
+        <h3 class="earlier-title">Content Rights / IP Protection</h3>
+        <div class="earlier-body">Designed and executed a targeted alpha-user survey without a dedicated researcher on the pillar. Informed the confident launch of a Creator IP protection product that exceeded retention goals.</div>
+      </div>
+      <div class="earlier-item">
+        <h3 class="earlier-title">Cross-Study Synthesis at Scale</h3>
+        <div class="earlier-body">Led synthesis of 300+ studies in the team's research repository to produce a top-issues report used by senior leadership for roadmap prioritization.</div>
+      </div>
+      <div class="earlier-item">
+        <h3 class="earlier-title">Standalone Gaming App Launch in ~6 Weeks</h3>
+        <div class="earlier-body">Research supported a consumer mobile gaming app from concept to launch in roughly 6 weeks through tight research-design-engineering loops. Internally cited as the smoothest adoption of any product at that scale.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-eyebrow">About</p>
+        <h2 style="margin-bottom: 22px;">Research that shapes strategy, not just validates it.</h2>
+        <p>I'm a UX Research leader with 15+ years of experience spanning a major social platform (9 years), a language learning startup, museums, and nonprofits. Most recently, I managed an 8-person research team supporting the Creator product organization.</p>
+        <p>Senior leaders consistently trust me to define entire problem spaces (community as a platform differentiator, cross-org user segmentation, AI in research practice) before the answers are known. My strongest work shows up in spaces that are early, contested, or under-defined.</p>
+        <p>I lead from the back: I place direct reports in leadership rooms rather than taking their seats, and build adoption through demonstrated value rather than formal authority.</p>
+        <p style="color:var(--text-3); font-size:14px;">Seattle, WA · Open to hybrid or remote · UX Research Senior Manager or Director scope</p>
+      </div>
+      <div>
+        <p class="section-eyebrow" style="margin-bottom: 20px;">Core Strengths</p>
+        <div class="strengths">
+          <div class="strength">
+            <h3 class="strength-title">Research → strategy translation</h3>
+            <div class="strength-desc">Repeatedly trusted to take an undefined problem space and produce both the framework and the recommended path forward, not just findings.</div>
+          </div>
+          <div class="strength">
+            <h3 class="strength-title">Mixed methods fluency</h3>
+            <div class="strength-desc">Equally comfortable managing researchers with a 30K-respondent multi-country survey, or a 3-day participatory design workshop. I work with my team to match method to question.</div>
+          </div>
+          <div class="strength">
+            <h3 class="strength-title">People leadership through change</h3>
+            <div class="strength-desc">5 hires in one year. Significant improvement in team engagement scores in 12 months. Shipped through 6+ org restructures and two layoff events.</div>
+          </div>
+          <div class="strength">
+            <h3 class="strength-title">Player-coach leadership</h3>
+            <div class="strength-desc">I operate at every level: managing researchers, working with vendors, and rolling up my sleeves to execute qualitative research directly. I lead without losing touch with the work.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="container">
+    <p class="section-eyebrow">Resume</p>
+    <h2 style="margin-bottom: 40px;">Career trajectory.</h2>
+    <div class="resume-grid">
+      <div>
+        <div class="resume-section-label">Experience</div>
+        <div class="timeline">
+
+          <div class="tl-item">
+            <div class="tl-years">2017–2026</div>
+            <div class="tl-content">
+              <div class="tl-company">Major Social Platform (Meta)</div>
+              <div class="tl-role">UX Research Manager → Senior Manager</div>
+              <div class="tl-focus">Led 8-person research team across Creator analytics, AI experiences, content rights, community, and notifications. Oversaw research strategy for the new Facebook Creator Studio AI app (launched June 2026).</div>
+              <div class="tl-highlight">Promoted from IC → Manager in 2021 · Scope expanded to multi-pillar by 2024</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-years">2016–2017</div>
+            <div class="tl-content">
+              <div class="tl-company">Babbel · NYC & Berlin</div>
+              <div class="tl-role">Senior UX Researcher → Research Manager</div>
+              <div class="tl-focus">First researcher in NYC office. After 3 months, expanded to manage 5 researchers across the US team. Ran research across all phases of product development: a/b tests, surveys, usability tests, stakeholder management.</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-years">2013–2016</div>
+            <div class="tl-content">
+              <div class="tl-company">The Metropolitan Museum of Art · NYC</div>
+              <div class="tl-role">Associate Museum Educator, Research</div>
+              <div class="tl-focus">First researcher in the Met's Education department. Research led to the Met App (now the mobile website), the MetKids interactive site, and the Met's website rebrand. Reported to the Chair of Education.</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-years">2012–2013</div>
+            <div class="tl-content">
+              <div class="tl-company">New Knowledge (now Knology) · NYC</div>
+              <div class="tl-role">Research Manager</div>
+              <div class="tl-focus">Employee #1. Built a research consultancy from the ground up: filed 501(c)(3), established processes, pitched clients, hired and led a team of 10 researchers serving museums, coalitions, and public art organizations.</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-years">2009–2012</div>
+            <div class="tl-content">
+              <div class="tl-company">Institute for Learning Innovation · Remote</div>
+              <div class="tl-role">Consultant / User Research Associate</div>
+              <div class="tl-focus">Research and evaluation projects across informal learning settings: NY Hall of Science, American Museum of Natural History, Mystic Seaport, Wildlife Conservation Society, TERC.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="resume-section-label" style="margin-top: 32px;">Education</div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-years">2010</div>
+            <div class="tl-content">
+              <div class="tl-role">M.S. Ed., Research & Evaluation</div>
+              <div class="tl-company">Bank Street College of Education · NYC</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-years">2005</div>
+            <div class="tl-content">
+              <div class="tl-role">B.A., Art & Design History / Arts Administration</div>
+              <div class="tl-company">The Evergreen State College · Olympia, WA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="resume-section-label">Skills</div>
+        <div class="skill-section">
+          <div class="skill-label">Research Methods</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Mixed Methods</span>
+            <span class="skill-tag">Survey Design</span>
+            <span class="skill-tag">JTBD Frameworks</span>
+            <span class="skill-tag">Diary Studies</span>
+            <span class="skill-tag">In-Depth Interviews</span>
+            <span class="skill-tag">Participatory Design</span>
+            <span class="skill-tag">International Fieldwork</span>
+            <span class="skill-tag">Cross-Study Synthesis</span>
+            <span class="skill-tag">RITE Methodology</span>
+            <span class="skill-tag">Usability Testing</span>
+            <span class="skill-tag">AI-Augmented Workflows</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-label">Domains</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Creator Economy</span>
+            <span class="skill-tag">Community & Fandom</span>
+            <span class="skill-tag">AI Products</span>
+            <span class="skill-tag">GenAI</span>
+            <span class="skill-tag">Trust & Safety</span>
+            <span class="skill-tag">Notifications</span>
+            <span class="skill-tag">Identity & Profile</span>
+            <span class="skill-tag">Social Gaming</span>
+            <span class="skill-tag">Language Learning</span>
+            <span class="skill-tag">Museum & Cultural Institutions</span>
+            <span class="skill-tag">Creative Tools</span>
+            <span class="skill-tag">Social Messaging</span>
+            <span class="skill-tag">Commerce</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-label">Leadership</div>
+          <div class="skill-tags">
+            <span class="skill-tag">People Management</span>
+            <span class="skill-tag">Hiring & Onboarding</span>
+            <span class="skill-tag">Cross-Org Influence</span>
+            <span class="skill-tag">Stakeholder Management</span>
+            <span class="skill-tag">Research Strategy</span>
+            <span class="skill-tag">Research Ops</span>
+            <span class="skill-tag">Mentoring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-name">Karen Plemons</div>
+        <div class="footer-title">UX Research Senior Manager · Seattle, WA</div>
+      </div>
+      <div class="footer-right">
+        <a href="mailto:karenmplemons@gmail.com" class="footer-email">karenmplemons@gmail.com</a>
+        <div class="footer-meta">Open to UX Research Senior Manager or Director scope</div>
+        <div class="footer-links">
+          <a href="https://linkedin.com/in/karenplemons" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleCS(header) {
+    const card = header.closest('.cs-card');
+    const open = card.classList.toggle('open');
+    header.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+</script>
+
+</body>
+</html>
